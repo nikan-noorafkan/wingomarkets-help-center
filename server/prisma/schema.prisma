@@ -1,0 +1,186 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:../dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  email              String   @unique
+  role               String   // admin | editor | translator | compliance_reviewer
+  passwordHash       String
+  mustChangePassword Boolean  @default(true)
+  createdAt          DateTime @default(now())
+}
+
+model Category {
+  id           String   @id // e.g. "platforms-tools"
+  slug         String   @unique
+  pillar       String   // help-center | academy
+  icon         String
+  accentToken  String
+  displayOrder Int
+  translations CategoryTranslation[]
+  articles     Article[]
+}
+
+model CategoryTranslation {
+  id          Int      @id @default(autoincrement())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  locale      String   // en | fa | ar
+  name        String
+  description String
+
+  @@unique([categoryId, locale])
+}
+
+model Article {
+  id                     Int                  @id @default(autoincrement())
+  slug                   String               @unique
+  categoryId             String
+  category               Category             @relation(fields: [categoryId], references: [id])
+  pillar                 String               // help-center | academy
+  templateType           String               // A | B | C | D
+  regionVariant          String?              // global | eu
+  status                 String               // draft | in_review | published | archived
+  relatedArticleIds      String               // JSON array string "[slug1, slug2]"
+  complianceRequired     Boolean              @default(false)
+  complianceSignedOffBy  String?
+  complianceSignedOffAt  DateTime?
+  createdBy              String?
+  updatedBy              String?
+  createdAt              DateTime             @default(now())
+  updatedAt              DateTime             @updatedAt
+  translations           ArticleTranslation[]
+  shortcuts              TaskShortcut[]
+  feedbackEvents         FeedbackEvent[]
+}
+
+model ArticleTranslation {
+  id                 Int      @id @default(autoincrement())
+  articleId          Int
+  article            Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale             String   // en | fa | ar
+  title              String
+  description        String
+  summary            String
+  content            String   // JSON string of Template specific body schema
+  seoMetaTitle       String?
+  seoMetaDescription String?
+  seoOgImage         String?
+  seoCanonicalUrl    String?
+  translationStatus  String   // not_started | draft | needs_review | published
+
+  @@unique([articleId, locale])
+}
+
+model TaskShortcut {
+  id              Int                       @id @default(autoincrement())
+  targetArticleId Int
+  article         Article                   @relation(fields: [targetArticleId], references: [id])
+  icon            String
+  displayOrder    Int
+  translations    TaskShortcutTranslation[]
+}
+
+model TaskShortcutTranslation {
+  id             Int          @id @default(autoincrement())
+  taskShortcutId Int
+  shortcut       TaskShortcut @relation(fields: [taskShortcutId], references: [id], onDelete: Cascade)
+  locale         String       // en | fa | ar
+  label          String
+
+  @@unique([taskShortcutId, locale])
+}
+
+model MediaAsset {
+  id           Int                      @id @default(autoincrement())
+  filename     String
+  url          String
+  uploadedBy   String
+  uploadedAt   DateTime                 @default(now())
+  translations MediaAssetTranslation[]
+}
+
+model MediaAssetTranslation {
+  id           Int        @id @default(autoincrement())
+  mediaAssetId Int
+  mediaAsset   MediaAsset @relation(fields: [mediaAssetId], references: [id], onDelete: Cascade)
+  locale       String     // en | fa | ar
+  altText      String
+
+  @@unique([mediaAssetId, locale])
+}
+
+model SupportSettings {
+  id              Int      @id @default(1)
+  slaChatMinutes  Int      @default(2)
+  slaEmailHours   Int      @default(2)
+}
+
+model Incident {
+  id          Int      @id @default(autoincrement())
+  title       String
+  status      String   // operational | degraded | outage | resolved
+  startedAt   DateTime @default(now())
+  resolvedAt  DateTime?
+  updates     String   // JSON array of [{ timestamp, message }]
+}
+
+model ServiceNode {
+  id        Int      @id @default(autoincrement())
+  nameKey   String   @unique // e.g. "server_name_mt5_eu"
+  latency   String
+  status    String   // operational | degraded | outage
+}
+
+model DisputeTicket {
+  id             Int       @id @default(autoincrement())
+  accountRef     String
+  tradeTicketId  String
+  submittedAt    DateTime  @default(now())
+  stage          String    // submitted | under_review | outcome_shared
+  outcome        String?   // adjusted | no_change | already_resolved
+  notes          String?
+  slaTargetAt    DateTime
+  history        String    // JSON array of audits [{ user, stage, outcome, timestamp }]
+}
+
+model FeedbackEvent {
+  id        Int      @id @default(autoincrement())
+  articleId Int
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale    String
+  helpful   Boolean
+  timestamp DateTime @default(now())
+}
+
+model SearchQueryLog {
+  id          Int      @id @default(autoincrement())
+  queryText   String
+  locale      String
+  resultCount Int
+  timestamp   DateTime @default(now())
+}
+
+model Redirect {
+  id      Int    @id @default(autoincrement())
+  oldSlug String @unique
+  newSlug String
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     Int?
+  userName   String?
+  action     String   // e.g. CREATE, UPDATE, DELETE, PUBLISH, SIGNOFF
+  entityType String
+  entityId   String
+  details    String   // JSON string or summary
+  timestamp  DateTime @default(now())
+}

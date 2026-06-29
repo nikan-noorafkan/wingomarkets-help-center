@@ -1,0 +1,176 @@
+/* Font-Face configuration for Yekan Bakh */
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-Thin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 400; /* Regular */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 600; /* SemiBold */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 800; /* ExtraBold */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 900; /* Black */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-style: normal;
+  font-weight: 950; /* ExtraBlack */
+  src: url('../assets/fonts/yekan-bakh/YekanBakh-ExtraBlack.woff2') format('woff2');
+}
+
+/* Set primary fonts */
+:root {
+  /* Color Palette - Dark Theme (Default) */
+  --bg: #0d1110;
+  --surf: #181c1e;
+  --surf-low: #1c2022;
+  --surf-ct: #23282a;
+  --surf-high: #2b3032;
+  --on: #eef1f3;
+  --on-var: #bfc9c4;
+  --outline: #899993;
+  --outline-v: #3f4845;
+  --divider: #2f3537;
+  
+  --primary: #4ddcbf;
+  --primary-c: #00b69b;
+  --on-primary-c: #6ff9db;
+  
+  --secondary: #bdc8d1;
+  --secondary-tint: rgba(189,200,209,.12);
+  
+  --tertiary: #e9c400;
+  --tertiary-tint: rgba(233,196,0,.14);
+  
+  --chip-bg: rgba(0,182,155,.18);
+  --chip-bg-hover: rgba(0,182,155,.30);
+  
+  --card-shadow: none;
+  --glow: 0 0 12px rgba(0,182,155,0.45);
+  --sidebar-bg: #181c1e;
+  --academy-bg: #15191b;
+  
+  --inverse: #272d2f;
+  --inverse-on: #eef1f3;
+  --inverse-on-var: #bfc9c4;
+  
+  --btn-bg: #00b69b;
+  --btn-on: #00322a;
+  --tertiary-btn: #535e66;
+  
+  /* Additional Template Values */
+  --gold: #e9c400;
+  --gold-c: #e9c400;
+  --on-gold-c: #221b00;
+  --gold-tint: rgba(233,196,0,.16);
+  --error: #ffb4ab;
+
+  /* Typography & Layout Tokens */
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  --border-radius-sm: 6px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --border-radius-full: 9999px;
+  
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.18s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* Light Theme Overrides (Document data-theme="light") */
+[data-theme="light"] {
+  --bg: #f7fafc;
+  --surf: #ffffff;
+  --surf-low: #f1f4f6;
+  --surf-ct: #ebeef0;
+  --surf-high: #e5e9eb;
+  --on: #181c1e;
+  --on-var: #3c4a45;
+  --outline: #6c7a75;
+  --outline-v: #bbcac4;
+  --divider: #e5e9eb;
+  
+  --primary: #006b5a;
+  --primary-c: #00b69b;
+  --on-primary-c: #004035;
+  
+  --secondary: #556068;
+  --secondary-tint: rgba(85,96,104,.12);
+  
+  --tertiary: #705d00;
+  --tertiary-tint: rgba(112,93,0,.14);
+  
+  --chip-bg: rgba(0,182,155,.14);
+  --chip-bg-hover: rgba(0,182,155,.24);
+  
+  --card-shadow: 0 4px 16px rgba(0,0,0,.04);
+  --glow: 0 0 8px rgba(0,182,155,0.3);
+  --sidebar-bg: #ffffff;
+  --academy-bg: #eef1f3;
+  
+  --inverse: #1f2426;
+  --inverse-on: #eef1f3;
+  --inverse-on-var: #bfc9c4;
+  
+  --btn-bg: #006b5a;
+  --btn-on: #ffffff;
+  --tertiary-btn: #535e66;
+  
+  /* Additional Template Values */
+  --gold: #705d00;
+  --gold-c: #be9f00;
+  --on-gold-c: #433700;
+  --gold-tint: rgba(190,159,0,.16);
+  --error: #ba1a1a;
+}
+
+/* Language Specific Font Overrides */
+[lang="fa"], [lang="ar"] {
+  --font-family: 'Yekan Bakh', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
