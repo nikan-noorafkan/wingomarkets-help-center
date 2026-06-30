@@ -68,6 +68,84 @@ const AGENT_AVATARS = [
   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60"
 ];
 
+const GUIDE_SECTIONS = [
+  {
+    title: "👤 حساب کاربری",
+    links: [
+      { label: "ثبت‌نام در وینگو مارکتس", url: "https://clientx.wingomarkets.com/fa/auth?view=register" },
+      { label: "راهنمای ثبت‌نام", url: "https://wingomarkets.com/dls/guides/fa/new/How-to-Register.pdf" },
+      { label: "ورود به پنل کاربری", url: "https://clientx.wingomarkets.com/fa/auth?view=login" },
+      { label: "فراموشی رمز عبور پنل", url: "https://clientx.wingomarkets.com/fa/auth?view=forgot_password" },
+      { label: "راهنمای تغییر رمز عبور پنل", url: "https://wingomarkets.com/dls/guides/fa/new/change-user-panel-password-guide.pdf" }
+    ]
+  },
+  {
+    title: "🤝 همکاری (IB)",
+    links: [
+      { label: "درخواست همکاری به عنوان IB", url: "https://wingomarkets.com/dls/guides/fa/new/ib-request-guide-new-panel.pdf" },
+      { label: "آشنایی با طرح همکاری IB Empire", url: "https://wingomarkets.com/en/dls/documents/Wingo-Markets-IB-Empire-FA.pdf" }
+    ]
+  },
+  {
+    title: "📈 حساب‌های معاملاتی",
+    links: [
+      { label: "افتتاح حساب دمو", url: "https://wingomarkets.com/dls/guides/fa/new/create-trading-account-guide.pdf" },
+      { label: "افتتاح حساب واقعی", url: "https://wingomarkets.com/dls/guides/fa/new/create-trading-account-guide.pdf" },
+      { label: "تغییر رمز عبور حساب دمو", url: "https://wingomarkets.com/dls/guides/fa/new/change-demo-password-guide-new-panel.pdf" },
+      { label: "تغییر رمز عبور حساب واقعی", url: "https://wingomarkets.com/dls/guides/fa/new/change-real-password-guide-new-panel.pdf" }
+    ]
+  },
+  {
+    title: "🛡 احراز هویت (KYC)",
+    links: [
+      { label: "راهنمای احراز هویت", url: "https://wingomarkets.com/dls/guides/fa/new/KYC_Verification_Guide.pdf" }
+    ]
+  },
+  {
+    title: "💳 واریز وجه",
+    links: [
+      { label: "واریز با ارز دیجیتال", url: "https://wingomarkets.com/dls/guides/fa/new/crypto-deposit-new-panel.pdf" },
+      { label: "واریز با تاپ‌چنج", url: "https://wingomarkets.com/dls/guides/fa/new/deposit-tcpay-guide-new-panel.pdf" },
+      { label: "واریز با Volet", url: "https://wingomarkets.com/dls/guides/fa/new/deposit-volet-guide-new-panel.pdf" }
+    ]
+  },
+  {
+    title: "💸 برداشت وجه",
+    links: [
+      { label: "برداشت با ارز دیجیتال", url: "https://wingomarkets.com/dls/guides/fa/new/crypto-withdrawal-guide.pdf" },
+      { label: "برداشت با تاپ‌چنج", url: "https://wingomarkets.com/dls/guides/fa/new/withdrawal-tcpay-guide-new-panel.pdf" },
+      { label: "برداشت با Volet", url: "https://wingomarkets.com/dls/guides/fa/new/withdrawal-volet-guide-new-panel.pdf" }
+    ]
+  },
+  {
+    title: "🔄 انتقال وجه",
+    links: [
+      { label: "انتقال داخلی بین حساب‌ها", url: "https://wingomarkets.com/dls/guides/fa/new/internal-transfer-guide-new-panel.pdf" }
+    ]
+  },
+  {
+    title: "🎫 پشتیبانی",
+    links: [
+      { label: "ثبت تیکت پشتیبانی", url: "https://wingomarkets.com/dls/guides/fa/new/support-ticket-guide-new-panel.pdf" }
+    ]
+  },
+  {
+    title: "📱 متاتریدر ۵",
+    links: [
+      { label: "ورود در ویندوز", url: "https://wingomarkets.com/dls/guides/fa/new/metatrader-login-windows-guide.pdf" },
+      { label: "ورود در اندروید", url: "https://wingomarkets.com/dls/guides/fa/new/metatrader-login-android-guide.pdf" },
+      { label: "ورود در iOS", url: "https://wingomarkets.com/dls/guides/fa/new/metatrader-login-ios-guide.pdf" }
+    ]
+  },
+  {
+    title: "👥 سوشال تریدینگ",
+    links: [
+      { label: "راهنمای پرووایدر", url: "https://wingomarkets.com/dls/guides/fa/new/Social-trading-guide-provider-FA.pdf" },
+      { label: "راهنمای فالوور", url: "https://wingomarkets.com/dls/guides/fa/new/Social-trading-guide-follower-FA.pdf" }
+    ]
+  }
+];
+
 export default function SupportWidget() {
   const { language } = useLanguage();
   const t = LOCALIZATIONS[language] || LOCALIZATIONS.en;
@@ -610,43 +688,64 @@ export default function SupportWidget() {
               </>
             ) : (
               // USEFUL LINKS / FAQ DECK TAB BODY
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', animation: 'slideUp 0.2s ease-out' }}>
-                <div style={{ color: '#fff', fontSize: '14px', fontWeight: 'bold', borderBottom: '1px solid #333', paddingBottom: '8px' }}>
-                  {t.quickLinksTitle}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', animation: 'slideUp 0.2s ease-out' }}>
+                <div style={{
+                  padding: '12px',
+                  backgroundColor: 'rgba(77, 220, 191, 0.04)',
+                  border: '1px dashed rgba(77, 220, 191, 0.2)',
+                  borderRadius: '8px',
+                  lineHeight: '1.5',
+                  fontSize: '12.5px',
+                  color: '#bbb'
+                }}>
+                  <strong style={{ color: '#fff', fontSize: '13px', display: 'block', marginBottom: '6px' }}>🚀 شروع کار با وینگو مارکتس | راهنماهای ضروری</strong>
+                  تمام آموزشها و راهنماهای موردنیاز برای ثبتنام، احراز هویت، واریز و برداشت، افتتاح حساب، متاتریدر 5، سوشال تریدینگ و همکاری به عنوان IB را از اینجا بهصورت یکجا در دسترس دارید.
+                  <div style={{ marginTop: '8px', fontWeight: 'bold', color: '#4ddcbf' }}>👇 راهنمای موردنظر خود را انتخاب کنید:</div>
                 </div>
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {[t.quickLink1, t.quickLink2, t.quickLink3, t.quickLink4].map((linkText, i) => (
-                    <button
-                      key={i}
-                      onClick={() => triggerQuickQuestion(linkText)}
-                      style={{
-                        padding: '12px',
-                        backgroundColor: '#1e1e1e',
-                        border: '1px solid #333',
-                        borderRadius: '6px',
-                        color: '#fff',
-                        textAlign: isRTL ? 'right' : 'left',
-                        fontSize: '12.5px',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s',
-                        lineHeight: '1.4',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                      }}
-                      onMouseOver={e => {
-                        e.currentTarget.style.backgroundColor = 'rgba(77,220,191,0.05)';
-                        e.currentTarget.style.borderColor = '#006b5a';
-                      }}
-                      onMouseOut={e => {
-                        e.currentTarget.style.backgroundColor = '#1e1e1e';
-                        e.currentTarget.style.borderColor = '#333';
-                      }}
-                    >
-                      <span style={{ color: '#4ddcbf' }}>•</span>
-                      <span>{linkText}</span>
-                    </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  {GUIDE_SECTIONS.map((section, secIdx) => (
+                    <div key={secIdx} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#4ddcbf', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span>{section.title}</span>
+                      </span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        {section.links.map((link, linkIdx) => (
+                          <a
+                            key={linkIdx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              padding: '8px 12px',
+                              backgroundColor: '#1c1c1c',
+                              border: '1px solid #2a2a2a',
+                              borderRadius: '6px',
+                              color: '#d0d0d0',
+                              textDecoration: 'none',
+                              fontSize: '12px',
+                              transition: 'all 0.15s'
+                            }}
+                            onMouseOver={e => {
+                              e.currentTarget.style.backgroundColor = '#262626';
+                              e.currentTarget.style.borderColor = '#006b5a';
+                              e.currentTarget.style.color = '#fff';
+                            }}
+                            onMouseOut={e => {
+                              e.currentTarget.style.backgroundColor = '#1c1c1c';
+                              e.currentTarget.style.borderColor = '#2a2a2a';
+                              e.currentTarget.style.color = '#d0d0d0';
+                            }}
+                          >
+                            <span>🔹 {link.label}</span>
+                            <span style={{ fontSize: '10px', color: '#666' }}>↗</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
