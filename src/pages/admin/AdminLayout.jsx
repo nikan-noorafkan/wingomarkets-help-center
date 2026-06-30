@@ -30,6 +30,11 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const getAdminPath = (path) => {
+    const isSubdir = location.pathname.startsWith('/help-center');
+    return isSubdir ? `/help-center${path}` : path;
+  };
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -39,10 +44,10 @@ export default function AdminLayout() {
           setUser(data.user);
           setIsAdmin(data.user.role === 'admin');
         } else {
-          navigate('/admin/login');
+          navigate(getAdminPath('/admin/login'));
         }
       } catch (e) {
-        navigate('/admin/login');
+        navigate(getAdminPath('/admin/login'));
       } finally {
         setLoading(false);
       }
@@ -53,7 +58,7 @@ export default function AdminLayout() {
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-      navigate('/admin/login');
+      navigate(getAdminPath('/admin/login'));
     } catch (e) {
       console.error('Logout error:', e);
     }
@@ -79,14 +84,14 @@ export default function AdminLayout() {
 
   // Sidebar navigation sections
   const menuItems = [
-    { path: '/admin', label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'editor', 'translator', 'compliance_reviewer'] },
-    { path: '/admin/articles', label: 'Articles', icon: FileText, roles: ['admin', 'editor', 'translator', 'compliance_reviewer'] },
-    { path: '/admin/categories', label: 'Categories & Shortcuts', icon: FolderTree, roles: ['admin', 'editor'] },
-    { path: '/admin/media', label: 'Media Library', icon: Image, roles: ['admin', 'editor'] },
-    { path: '/admin/seo', label: 'SEO Toolkit', icon: Globe, roles: ['admin', 'editor'] },
-    { path: '/admin/support', label: 'Support Ops', icon: Sliders, roles: ['admin', 'editor', 'compliance_reviewer'] },
-    { path: '/admin/localization', label: 'Localization', icon: Languages, roles: ['admin', 'editor', 'translator'] },
-    { path: '/admin/users', label: 'Users & Audits', icon: Users, roles: ['admin', 'editor'] },
+    { path: getAdminPath('/admin'), label: 'Dashboard', icon: LayoutDashboard, roles: ['admin', 'editor', 'translator', 'compliance_reviewer'] },
+    { path: getAdminPath('/admin/articles'), label: 'Articles', icon: FileText, roles: ['admin', 'editor', 'translator', 'compliance_reviewer'] },
+    { path: getAdminPath('/admin/categories'), label: 'Categories & Shortcuts', icon: FolderTree, roles: ['admin', 'editor'] },
+    { path: getAdminPath('/admin/media'), label: 'Media Library', icon: Image, roles: ['admin', 'editor'] },
+    { path: getAdminPath('/admin/seo'), label: 'SEO Toolkit', icon: Globe, roles: ['admin', 'editor'] },
+    { path: getAdminPath('/admin/support'), label: 'Support Ops', icon: Sliders, roles: ['admin', 'editor', 'compliance_reviewer'] },
+    { path: getAdminPath('/admin/localization'), label: 'Localization', icon: Languages, roles: ['admin', 'editor', 'translator'] },
+    { path: getAdminPath('/admin/users'), label: 'Users & Audits', icon: Users, roles: ['admin', 'editor'] },
   ];
 
   const allowedMenuItems = menuItems.filter(item => item.roles.includes(user?.role));
@@ -126,7 +131,7 @@ export default function AdminLayout() {
         <nav style={{ flex: 1, padding: '16px 8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
           {allowedMenuItems.map((item) => {
             const Icon = item.icon;
-            const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
+            const isActive = location.pathname === item.path || (item.path !== getAdminPath('/admin') && location.pathname.startsWith(item.path));
             return (
               <Link
                 key={item.path}

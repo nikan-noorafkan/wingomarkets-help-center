@@ -17,6 +17,8 @@ export default function AdminLogin() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    const isSubdir = window.location.pathname.startsWith('/help-center');
+    const targetPath = isSubdir ? '/help-center/admin' : '/admin';
     setError('');
     setLoading(true);
     try {
@@ -36,7 +38,7 @@ export default function AdminLogin() {
         setCurrentPassword(password);
       } else {
         // Successful login
-        navigate('/admin');
+        navigate(targetPath);
       }
     } catch (err) {
       setError(err.message);
@@ -46,6 +48,8 @@ export default function AdminLogin() {
   };
 
   const handleResetSubmit = async (e) => {
+    const isSubdir = window.location.pathname.startsWith('/help-center');
+    const targetPath = isSubdir ? '/help-center/admin' : '/admin';
     e.preventDefault();
     setError('');
     if (newPassword !== confirmPassword) {
@@ -66,7 +70,7 @@ export default function AdminLogin() {
         throw new Error(data.error || 'Failed to update password.');
       }
       // Redirect to main admin dashboard
-      navigate('/admin');
+      navigate(targetPath);
     } catch (err) {
       setError(err.message);
     } finally {

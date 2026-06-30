@@ -1090,6 +1090,36 @@ app.get('/api/audit-logs', authenticateToken, requireRoles(['admin', 'editor']),
   }
 });
 
+// Proxy support bot endpoint to n8n webhook (bypasses browser CORS blocks)
+app.post('/api/support-bot/chat', async (req, res) => {
+  const { sessionId, message, history, metadata } = req.body;
+  try {
+    const response = await fetch('https://n8n.wingogroup.org/webhook/support-ai-demo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sessionId,
+        message,
+        history: history || [],
+        metadata: metadata || {}
+      })
+    });
+    
+    if (!response.ok) {
+      const errText = await response.text();
+      return res.status(response.status).json({ error: `n8n webhook error: ${errText}` });
+    }
+    
+    const data = await response.json();
+    return res.json(data);
+  } catch (e) {
+    console.error('Support bot proxy error:', e);
+    return res.status(500).json({ error: 'Failed to communicate with support bot service.' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`WingoMarkets Help Center CMS API running on port ${PORT}`);
 });

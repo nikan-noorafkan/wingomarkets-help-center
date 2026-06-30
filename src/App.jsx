@@ -25,17 +25,20 @@ function LanguageHandler({ children }) {
 import Sidebar from './components/Sidebar';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
+import SupportWidget from './components/SupportWidget';
 
 function App() {
   const location = useLocation();
-  const isAdminPath = location.pathname.startsWith('/admin');
+  const isAdminPath = location.pathname.startsWith('/admin') || location.pathname.startsWith('/help-center/admin');
 
   if (isAdminPath) {
     return (
       <LanguageHandler>
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/help-center/admin/login" element={<AdminLogin />} />
           <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="/help-center/admin/*" element={<AdminLayout />} />
         </Routes>
       </LanguageHandler>
     );
@@ -85,6 +88,7 @@ function App() {
           <Footer />
         </div>
       </div>
+      <SupportWidget />
     </LanguageHandler>
   );
 }
