@@ -166,12 +166,12 @@ export default function Home() {
           />
         </form>
 
-        <p className="popular-tags-list">
-          {t('popular')}{' '}
-          <button onClick={() => handlePopularSearch('withdraw')} className="tag-link">{t('tag_withdraw')}</button> ·{' '}
-          <button onClick={() => handlePopularSearch('verify')} className="tag-link">{t('tag_verify')}</button> ·{' '}
-          <button onClick={() => handlePopularSearch('MT5')} className="tag-link">{t('tag_mt5')}</button>
-        </p>
+        <div className="popular-tags-list">
+          <span className="label">{t('popular')}</span>
+          <button onClick={() => handlePopularSearch(t('tag_withdraw'))} className="tag-link">{t('tag_withdraw')}</button>
+          <button onClick={() => handlePopularSearch(t('tag_verify'))} className="tag-link">{t('tag_verify')}</button>
+          <button onClick={() => handlePopularSearch(t('tag_mt5'))} className="tag-link">{t('tag_mt5')}</button>
+        </div>
       </section>
 
       {/* 2. DUAL PILLARS LAYOUT */}

@@ -339,23 +339,42 @@
 }
 
 .popular-tags-list {
-  margin: 18px 0 0;
+  margin: 24px auto 0;
   font-size: 13px;
   font-weight: 500;
   color: var(--on-var, #3c4a45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.popular-tags-list .label {
+  color: var(--on-var);
+  opacity: 0.85;
 }
 
 .popular-tags-list .tag-link {
-  color: var(--primary, #006b5a);
-  font-weight: 600;
-  background: transparent;
-  border: none;
+  color: var(--on-var, #aaa);
+  background: var(--surf-low, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--divider, rgba(255, 255, 255, 0.08));
+  border-radius: 18px;
+  padding: 6px 14px;
   cursor: pointer;
-  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
 
 .popular-tags-list .tag-link:hover {
-  text-decoration: underline;
+  background: var(--chip-bg, rgba(0, 182, 155, 0.1));
+  border-color: var(--primary, #006b5a);
+  color: var(--primary, #4ddcbf);
+  box-shadow: 0 0 10px rgba(0, 182, 155, 0.15);
+  text-decoration: none;
 }
 
 /* Dual pillars grid */
