@@ -29,6 +29,49 @@ export default function Footer() {
     return `Email Support (Target: < ${hours} hours)`;
   };
 
+  const footerLinks = [
+    {
+      title: {
+        en: "Privacy Policy",
+        fa: "حریم خصوصی",
+        ar: "سياسة الخصوصية"
+      },
+      url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Privacy-Policy.pdf"
+    },
+    {
+      title: {
+        en: "AML/KYC",
+        fa: "قوانین احراز هویت (AML/KYC)",
+        ar: "سياسة مكافحة غسيل الأموال واعرف عميلك (AML/KYC)"
+      },
+      url: "https://wingomarkets.com/dls/documents/Wingo-Markets-KYC-AML-Policy.pdf"
+    },
+    {
+      title: {
+        en: "Terms & Conditions",
+        fa: "شرایط و قوانین",
+        ar: "الشروط والأحكام"
+      },
+      url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Terms-and-Conditions.pdf"
+    },
+    {
+      title: {
+        en: "Risk Disclosure",
+        fa: "بیانیه افشای ریسک",
+        ar: "إخلاء المسؤولية عن المخاطر"
+      },
+      url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Risk-Warning-Notice.pdf"
+    },
+    {
+      title: {
+        en: "AML and CTF Policy",
+        fa: "قوانین مبارزه با پولشویی و تامین مالی تروریسم (AML/CTF)",
+        ar: "سياسة مكافحة غسيل الأموال وتمويل الإرهاب (AML/CTF)"
+      },
+      url: "https://wingomarkets.com/dls/documents/Wingo-Markets-AML-and-CTF-Policy.pdf"
+    }
+  ];
+
   return (
     <footer className="footer-area">
       <div className="container">
@@ -75,11 +118,17 @@ export default function Footer() {
           <div className="copyright-text">
             &copy; 2026 WingoMarkets. All rights reserved.
           </div>
-          <div className="bottom-links">
-            <a href="#privacy">{t('link_privacy')}</a>
-            <a href="#terms">{t('link_terms')}</a>
-            <a href="#aml">{t('link_aml')}</a>
-            <a href="#disclaimer">{t('link_disclaimer')}</a>
+          <div className="bottom-links" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            {footerLinks.map((link, idx) => (
+              <a 
+                key={idx} 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                {link.title[language] || link.title['en']}
+              </a>
+            ))}
           </div>
         </div>
       </div>
