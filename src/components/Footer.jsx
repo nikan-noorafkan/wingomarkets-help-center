@@ -31,43 +31,23 @@ export default function Footer() {
 
   const footerLinks = [
     {
-      title: {
-        en: "Privacy Policy",
-        fa: "حریم خصوصی",
-        ar: "سياسة الخصوصية"
-      },
+      title: "Privacy Policy",
       url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Privacy-Policy.pdf"
     },
     {
-      title: {
-        en: "AML/KYC",
-        fa: "قوانین احراز هویت (AML/KYC)",
-        ar: "سياسة مكافحة غسيل الأموال واعرف عميلك (AML/KYC)"
-      },
+      title: "AML/KYC",
       url: "https://wingomarkets.com/dls/documents/Wingo-Markets-KYC-AML-Policy.pdf"
     },
     {
-      title: {
-        en: "Terms & Conditions",
-        fa: "شرایط و قوانین",
-        ar: "الشروط والأحكام"
-      },
+      title: "Terms & Condition",
       url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Terms-and-Conditions.pdf"
     },
     {
-      title: {
-        en: "Risk Disclosure",
-        fa: "بیانیه افشای ریسک",
-        ar: "إخلاء المسؤولية عن المخاطر"
-      },
+      title: "Risk Disclosure",
       url: "https://wingomarkets.com/dls/documents/Wingo-Markets-Risk-Warning-Notice.pdf"
     },
     {
-      title: {
-        en: "AML and CTF Policy",
-        fa: "قوانین مبارزه با پولشویی و تامین مالی تروریسم (AML/CTF)",
-        ar: "سياسة مكافحة غسيل الأموال وتمويل الإرهاب (AML/CTF)"
-      },
+      title: "AML and CTF Policy",
       url: "https://wingomarkets.com/dls/documents/Wingo-Markets-AML-and-CTF-Policy.pdf"
     }
   ];
@@ -126,7 +106,7 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                {link.title[language] || link.title['en']}
+                {link.title}
               </a>
             ))}
           </div>

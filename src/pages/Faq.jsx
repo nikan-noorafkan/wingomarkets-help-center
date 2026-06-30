@@ -167,9 +167,9 @@ export default function Faq() {
             style={{
               padding: '10px 18px',
               borderRadius: '20px',
-              border: activeCategory === cat.id ? '1px solid #006b5a' : '1px solid #333',
-              backgroundColor: activeCategory === cat.id ? 'rgba(0, 182, 155, 0.1)' : '#161616',
-              color: activeCategory === cat.id ? '#4ddcbf' : '#aaa',
+              border: activeCategory === cat.id ? '1px solid var(--primary, #006b5a)' : '1px solid var(--card-border)',
+              backgroundColor: activeCategory === cat.id ? 'var(--chip-bg, rgba(0, 182, 155, 0.1))' : 'var(--card-bg)',
+              color: activeCategory === cat.id ? 'var(--primary, #006b5a)' : 'var(--on-var)',
               fontSize: '13px',
               fontWeight: activeCategory === cat.id ? 'bold' : 'normal',
               cursor: 'pointer',
@@ -187,9 +187,8 @@ export default function Faq() {
           filteredFaqs.map((faq, idx) => {
             const isExpanded = expandedFaq === idx;
             return (
-              <div key={idx} className={`faq-item ${isExpanded ? 'active' : ''}`} style={{
-                backgroundColor: '#161616',
-                border: isExpanded ? '1px solid #006b5a' : '1px solid #333',
+              <div key={idx} className={`faq-item glass-panel ${isExpanded ? 'active' : ''}`} style={{
+                border: isExpanded ? '1px solid var(--primary, #006b5a)' : '1px solid var(--card-border)',
                 borderRadius: '8px',
                 overflow: 'hidden',
                 transition: 'all 0.3s ease'
@@ -204,7 +203,7 @@ export default function Faq() {
                     alignItems: 'center',
                     background: 'transparent',
                     border: 'none',
-                    color: '#fff',
+                    color: 'var(--on)',
                     fontSize: '14px',
                     fontWeight: '600',
                     cursor: 'pointer',
@@ -216,7 +215,7 @@ export default function Faq() {
                   <ChevronDown size={16} style={{
                     transition: 'transform 0.3s ease',
                     transform: isExpanded ? 'rotate(180deg)' : 'none',
-                    color: isExpanded ? '#4ddcbf' : '#888',
+                    color: isExpanded ? 'var(--primary, #4ddcbf)' : 'var(--on-var, #888)',
                     marginLeft: isRTL ? '0' : '8px',
                     marginRight: isRTL ? '8px' : '0'
                   }} />
@@ -230,7 +229,7 @@ export default function Faq() {
                     padding: '0 24px 18px 24px',
                     fontSize: '13px',
                     lineHeight: '1.6',
-                    color: '#aaa',
+                    color: 'var(--on-var)',
                     textAlign: isRTL ? 'right' : 'left'
                   }}>
                     {faq.a[language] || faq.a['en']}
