@@ -213,7 +213,7 @@ export default function Faq() {
                   }}
                 >
                   <span style={{ textAlign: isRTL ? 'right' : 'left' }}>{faq.q[language] || faq.q['en']}</span>
-                  <Icons.ChevronDown size={16} style={{
+                  <ChevronDown size={16} style={{
                     transition: 'transform 0.3s ease',
                     transform: isExpanded ? 'rotate(180deg)' : 'none',
                     color: isExpanded ? '#4ddcbf' : '#888',
