@@ -240,6 +240,8 @@ export default function SupportWidget() {
     });
   };
 
+  if (language !== 'fa') return null;
+
   return (
     <div style={{
       position: 'fixed',
