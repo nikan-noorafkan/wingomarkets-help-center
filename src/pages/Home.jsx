@@ -6,69 +6,6 @@ import { useData } from '../context/DataContext';
 import { Search, HelpCircle, BookOpen, Activity, ArrowRight, MessageSquare } from 'lucide-react';
 import * as Icons from 'lucide-react';
 
-const FAQ_DATA = [
-  {
-    q: {
-      en: "How do I verify my trading account?",
-      fa: "چگونه حساب معاملاتی خود را احراز هویت کنم؟",
-      ar: "كيف يمكنني توثيق حساب التداول الخاص بي؟"
-    },
-    a: {
-      en: "You can verify your trading account by logging into your portal, going to Profile > Verification, and uploading your proof of identity (passport or national ID) and proof of address.",
-      fa: "شما می‌توانید با ورود به کابین شخصی خود، مراجعه به بخش پروفایل > احراز هویت، و بارگذاری مدارک هویتی (کارت ملی یا پاسپورت) و تاییدیه آدرس اقدام کنید.",
-      ar: "يمكنك توثيق حسابك من خلال تسجيل الدخول إلى لوحة التحكم، والذهاب إلى الملف الشخصي > التحقق، ورفع إثبات الهوية وإثبات العنوان."
-    }
-  },
-  {
-    q: {
-      en: "What are the available deposit methods?",
-      fa: "روش‌های واریز به حساب چیست؟",
-      ar: "ما هي طرق الإيداع المتاحة؟"
-    },
-    a: {
-      en: "We support multiple deposit methods including Crypto (USDT, BTC, ETH), TopChange, and bank transfers with zero processing fees.",
-      fa: "ما از چندین روش واریز پشتیبانی می‌کنیم، از جمله ارزهای دیجیتال (USDT، بیت‌کوین)، درگاه تاپ‌چنج و واریز مستقیم ریالی با کارمزد صفر.",
-      ar: "نحن ندعم طرق إيداع متعددة بما في ذلك العملات الرقمية (USDT، BTC)، وتوب تشينج (TopChange)، والتحويلات البنكية بدون رسوم إضافية."
-    }
-  },
-  {
-    q: {
-      en: "How long do withdrawals take to process?",
-      fa: "برداشت وجه چقدر زمان می‌برد؟",
-      ar: "كم من الوقت تستغرق عمليات السحب؟"
-    },
-    a: {
-      en: "Withdrawals are processed by our financial department within 1 to 3 hours during working business days.",
-      fa: "درخواست‌های برداشت توسط دپارتمان مالی ما طی ۱ الی ۳ ساعت در طول روزهای کاری پردازش و تایید می‌شوند.",
-      ar: "تتم معالجة عمليات السحب من قبل القسم المالي لدينا في غضون 1 إلى 3 ساعات خلال أيام العمل الرسمية."
-    }
-  },
-  {
-    q: {
-      en: "Which trading platforms are available?",
-      fa: "چه پلتفرم‌های معاملاتی در دسترس است؟",
-      ar: "ما هي منصات التداول المتاحة؟"
-    },
-    a: {
-      en: "We offer MetaTrader 5 (MT5) for Windows, macOS, Android, and iOS, as well as our WebTrader portal.",
-      fa: "ما پلتفرم محبوب متاتریدر ۵ (MT5) را برای سیستم‌عامل‌های ویندوز، مک، اندروید و iOS به همراه نسخه وب (WebTrader) ارائه می‌دهیم.",
-      ar: "نحن نقدم منصة ميتاتريدر 5 (MT5) لأنظمة التشغيل Windows و macOS و Android و iOS، بالإضافة إلى منصة ويب تريدر."
-    }
-  },
-  {
-    q: {
-      en: "How can I contact WingoMarkets customer support?",
-      fa: "چگونه با پشتیبانی مشتریان وینگو مارکتس ارتباط برقرار کنم؟",
-      ar: "كيف يمكنني الاتصال بدعم عملاء وينجو ماركتس؟"
-    },
-    a: {
-      en: "Our customer support team is available 24/7. You can contact us via our Live Chat, ticket submission inside the portal, or via Telegram support.",
-      fa: "تیم پشتیبانی ما به صورت ۲۴ ساعته در ۷ روز هفته در دسترس است. شما می‌توانید از طریق چت زنده سایت، ثبت تیکت در کابین کاربری یا تلگرام با ما در ارتباط باشید.",
-      ar: "فريق الدعم لدينا متاح على مدار الساعة طوال أيام الأسبوع. يمكنك الاتصال بنا عبر الدردشة المباشرة، أو تذاكر الدعم، أو تيليجرام."
-    }
-  }
-];
-
 export default function Home() {
   const { language, t, localizePath } = useLanguage();
   const { articles, categories, shortcuts, loading } = useData();
@@ -76,7 +13,6 @@ export default function Home() {
   const searchQuery = searchParams.get('q') || '';
   const [localSearch, setLocalSearch] = useState(searchQuery);
   const [searchResults, setSearchResults] = useState([]);
-  const [expandedFaq, setExpandedFaq] = useState(null);
 
   const supportCategories = categories.filter(c => c.pillar === 'help-center');
   const academyCategories = categories.filter(c => c.pillar === 'academy');
@@ -361,50 +297,6 @@ export default function Home() {
               </span>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* 5.5 FAQ ACCORDION SECTION */}
-      <section className="faq-section-design" style={{ marginBottom: '32px' }}>
-        <div className="faq-header">
-          <h2>{language === 'fa' ? 'سوالات متداول کاربران' : (language === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions')}</h2>
-          <p>{language === 'fa' ? 'پاسخ به سوالات پرتکرار و مشکلات رایج کاربران در وینگو مارکتس' : (language === 'ar' ? 'اعثر على إجابات للأسئلة الأكثر شيوعًا حول خدماتنا' : 'Find quick answers to the most common questions about our services')}</p>
-        </div>
-        
-        <div className="faq-accordion">
-          {FAQ_DATA.map((faq, idx) => {
-            const isExpanded = expandedFaq === idx;
-            return (
-              <div key={idx} className={`faq-item ${isExpanded ? 'active' : ''}`}>
-                <button 
-                  onClick={() => setExpandedFaq(isExpanded ? null : idx)}
-                  className="faq-question-btn"
-                  style={{
-                    width: '100%',
-                    padding: '18px 24px',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#fff',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    outline: 'none'
-                  }}
-                >
-                  <span style={{ textAlign: language === 'en' ? 'left' : 'right' }}>{faq.q[language] || faq.q['en']}</span>
-                  <Icons.ChevronDown className="faq-chevron" size={16} style={{ transition: 'transform 0.3s ease', transform: isExpanded ? 'rotate(180deg)' : 'none', color: isExpanded ? '#4ddcbf' : '#888', marginLeft: language === 'en' ? '8px' : '0', marginRight: language === 'en' ? '0' : '8px' }} />
-                </button>
-                <div className="faq-answer-wrapper" style={{ maxHeight: isExpanded ? '200px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
-                  <div className="faq-answer" style={{ padding: '0 24px 18px 24px', fontSize: '13px', lineHeight: '1.6', color: '#aaa', textAlign: language === 'en' ? 'left' : 'right' }}>
-                    {faq.a[language] || faq.a['en']}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
         </div>
       </section>
 

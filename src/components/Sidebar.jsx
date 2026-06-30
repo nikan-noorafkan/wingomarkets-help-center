@@ -8,10 +8,10 @@ export default function Sidebar() {
   const { language, localizePath } = useLanguage();
 
   const isAcademy = location.pathname.includes('/academy');
-  const isHelpCenter = location.pathname.includes('/help-center') && !location.pathname.includes('/status');
+  const isFaq = location.pathname.includes('/faq');
   const isStatus = location.pathname.includes('/status');
-
-  const mainHomePath = language === 'en' ? '/' : `/${language}`;
+  // Help Center Home is active when we are in /help-center but not on status or FAQ page
+  const isHelpCenterHome = location.pathname.includes('/help-center') && !isFaq && !isStatus;
 
   return (
     <aside className="portal-sidebar">
@@ -22,20 +22,21 @@ export default function Sidebar() {
 
       {/* Home Button (Portal home) */}
       <Link 
-        to={mainHomePath} 
-        className="sidebar-btn"
+        to={localizePath('/help-center')} 
+        className={`sidebar-btn ${isHelpCenterHome ? 'active help-center-theme' : ''}`}
         title="Home"
       >
+        {isHelpCenterHome && <span className="active-indicator"></span>}
         <Home size={22} />
       </Link>
 
-      {/* Help Center Icon Button */}
+      {/* Help Center Icon Button (FAQ Page) */}
       <Link 
-        to={localizePath('/help-center')} 
-        className={`sidebar-btn ${isHelpCenter ? 'active help-center-theme' : ''}`}
-        title="Help Center"
+        to={localizePath('/help-center/faq')} 
+        className={`sidebar-btn ${isFaq ? 'active help-center-theme' : ''}`}
+        title="FAQ"
       >
-        {isHelpCenter && <span className="active-indicator"></span>}
+        {isFaq && <span className="active-indicator"></span>}
         <HelpCircle size={22} />
       </Link>
 

@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import CategoryDetail from './pages/CategoryDetail';
 import ArticleDetail from './pages/ArticleDetail';
 import SystemStatus from './pages/SystemStatus';
+import Faq from './pages/Faq';
 import './App.css';
 
 // Sync layout directions & locales dynamically with router path prefixes
@@ -61,6 +62,7 @@ function App() {
 
               {/* English (Default) Paths */}
               <Route path="/help-center" element={<Home />} />
+              <Route path="/help-center/faq" element={<Faq />} />
               <Route path="/help-center/status" element={<SystemStatus />} />
               <Route path="/help-center/:categorySlug" element={<CategoryDetail />} />
               <Route path="/help-center/:categorySlug/:articleSlug" element={<ArticleDetail />} />
@@ -68,6 +70,7 @@ function App() {
 
               {/* Persian Paths */}
               <Route path="/fa/help-center" element={<Home />} />
+              <Route path="/fa/help-center/faq" element={<Faq />} />
               <Route path="/fa/help-center/status" element={<SystemStatus />} />
               <Route path="/fa/help-center/:categorySlug" element={<CategoryDetail />} />
               <Route path="/fa/help-center/:categorySlug/:articleSlug" element={<ArticleDetail />} />
@@ -75,6 +78,7 @@ function App() {
 
               {/* Arabic Paths */}
               <Route path="/ar/help-center" element={<Home />} />
+              <Route path="/ar/help-center/faq" element={<Faq />} />
               <Route path="/ar/help-center/status" element={<SystemStatus />} />
               <Route path="/ar/help-center/:categorySlug" element={<CategoryDetail />} />
               <Route path="/ar/help-center/:categorySlug/:articleSlug" element={<ArticleDetail />} />
