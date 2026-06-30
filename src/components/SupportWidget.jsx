@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Send, X, MessageCircle, ArrowLeft, MoreHorizontal, Smile, AlertCircle, HelpCircle } from 'lucide-react';
+import { Send, X, MessageCircle, ArrowLeft, MoreHorizontal, Smile, AlertCircle, HelpCircle, Bot } from 'lucide-react';
 
 const LOCALIZATIONS = {
   en: {
@@ -62,11 +62,7 @@ const LOCALIZATIONS = {
   }
 };
 
-const AGENT_AVATARS = [
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60"
-];
+// AGENT_AVATARS replaced with clean Bot component icon
 
 const GUIDE_SECTIONS = [
   {
@@ -375,24 +371,20 @@ export default function SupportWidget() {
             </div>
           </div>
 
-          {/* Overlapping representative avatars */}
+          {/* Glowing AI Assistant Bot Icon */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ display: 'flex', position: 'relative', paddingLeft: isRTL ? '0' : '10px', paddingRight: isRTL ? '10px' : '0' }}>
-              {AGENT_AVATARS.map((avatar, idx) => (
-                <div key={idx} style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  border: '2px solid #1e1e1e',
-                  backgroundImage: `url(${avatar})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  marginLeft: isRTL ? '0' : (idx > 0 ? '-10px' : '0'),
-                  marginRight: isRTL ? (idx > 0 ? '-10px' : '0') : '0',
-                  position: 'relative',
-                  zIndex: 3 - idx
-                }}></div>
-              ))}
+            <div style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #006b5a, #4ddcbf)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              boxShadow: '0 0 10px rgba(77, 220, 191, 0.2)'
+            }}>
+              <Bot size={20} />
             </div>
           </div>
 
@@ -511,21 +503,19 @@ export default function SupportWidget() {
 
               {activeTab === 'chat' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', textAlign: 'center', marginTop: '10px' }}>
-                  <div style={{ display: 'flex', position: 'relative' }}>
-                    {AGENT_AVATARS.map((avatar, idx) => (
-                      <div key={idx} style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        border: '2px solid #006b5a',
-                        backgroundImage: `url(${avatar})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        marginLeft: idx > 0 ? '-12px' : '0',
-                        position: 'relative',
-                        zIndex: 3 - idx
-                      }}></div>
-                    ))}
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #161616, #222)',
+                    border: '2.5px solid #4ddcbf',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#4ddcbf',
+                    boxShadow: '0 0 15px rgba(77, 220, 191, 0.2)'
+                  }}>
+                    <Bot size={26} />
                   </div>
                   <h4 style={{ fontSize: '16px', fontWeight: 'bold', margin: '6px 0 2px 0' }}>{t.greeting}</h4>
                   <span style={{ fontSize: '12px', color: '#4ddcbf' }}>{t.typicallyReplies}</span>
@@ -550,15 +540,19 @@ export default function SupportWidget() {
                 >
                   <ArrowLeft size={18} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
                 </button>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  backgroundImage: `url(${AGENT_AVATARS[0]})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  border: '1.5px solid #4ddcbf'
-                }}></div>
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      border: '1.5px solid #4ddcbf',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#4ddcbf'
+                    }}>
+                      <Bot size={18} />
+                    </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{t.supportName}</span>
                   <span style={{ fontSize: '10px', color: '#4ddcbf' }}>{t.onlineStatus}</span>
@@ -597,11 +591,16 @@ export default function SupportWidget() {
                     width: '28px',
                     height: '28px',
                     borderRadius: '50%',
-                    backgroundImage: `url(${AGENT_AVATARS[0]})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    background: '#1e1e1e',
+                    border: '1px solid #333',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#4ddcbf',
                     flexShrink: 0
-                  }}></div>
+                  }}>
+                    <Bot size={15} />
+                  </div>
                   <div style={{
                     backgroundColor: '#1e1e1e',
                     color: '#fff',
@@ -633,11 +632,16 @@ export default function SupportWidget() {
                           width: '28px',
                           height: '28px',
                           borderRadius: '50%',
-                          backgroundImage: `url(${AGENT_AVATARS[0]})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
+                          background: '#1e1e1e',
+                          border: '1px solid #333',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#4ddcbf',
                           flexShrink: 0
-                        }}></div>
+                        }}>
+                          <Bot size={15} />
+                        </div>
                       )}
                       <div style={{
                         backgroundColor: isAssistant ? '#1e1e1e' : '#006b5a',
@@ -663,11 +667,16 @@ export default function SupportWidget() {
                       width: '28px',
                       height: '28px',
                       borderRadius: '50%',
-                      backgroundImage: `url(${AGENT_AVATARS[0]})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      background: '#1e1e1e',
+                      border: '1px solid #333',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#4ddcbf',
                       flexShrink: 0
-                    }}></div>
+                    }}>
+                      <Bot size={15} />
+                    </div>
                     <div style={{
                       backgroundColor: '#1e1e1e',
                       padding: '10px 14px',
