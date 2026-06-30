@@ -23,7 +23,7 @@ const LOCALIZATIONS = {
     quickLink4: "How do I submit a support ticket?"
   },
   fa: {
-    greeting: "سوالی دارید؟ بگذارید دستیار هوشمند کمک کند.",
+    greeting: "من دستیار هوشمند شما هستم چطور میتونم کمکتون کنم؟",
     onlineStatus: "دستیار هوشمند آنلاین است",
     chatButton: "شروع گفتگوی هوشمند",
     kbButton: "لینک‌های مفید",
