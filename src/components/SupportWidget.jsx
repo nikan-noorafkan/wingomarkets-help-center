@@ -205,6 +205,22 @@ export default function SupportWidget() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Handle external trigger to open the support widget chat tab
+  useEffect(() => {
+    const handleOpenWidgetEvent = () => {
+      setActiveTab('chat');
+      const savedHistory = sessionStorage.getItem('wingo_chat_history');
+      if (savedHistory && JSON.parse(savedHistory).length > 0) {
+        setWidgetState('chat');
+      } else {
+        setWidgetState('intro');
+      }
+    };
+
+    window.addEventListener('open-support-widget', handleOpenWidgetEvent);
+    return () => window.removeEventListener('open-support-widget', handleOpenWidgetEvent);
+  }, []);
+
   useEffect(() => {
     if (messages.length > 0) {
       sessionStorage.setItem('wingo_chat_history', JSON.stringify(messages));
