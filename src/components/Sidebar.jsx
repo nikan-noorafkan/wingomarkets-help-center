@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { HelpCircle, Home, Activity, BookOpen, Settings } from 'lucide-react';
+import { HelpCircle, Home, Activity, BookOpen } from 'lucide-react';
 
 export default function Sidebar() {
   const location = useLocation();
@@ -20,6 +20,15 @@ export default function Sidebar() {
         <span>W</span>
       </Link>
 
+      {/* Home Button (Portal home) */}
+      <Link 
+        to={mainHomePath} 
+        className="sidebar-btn"
+        title="Home"
+      >
+        <Home size={22} />
+      </Link>
+
       {/* Help Center Icon Button */}
       <Link 
         to={localizePath('/help-center')} 
@@ -28,15 +37,6 @@ export default function Sidebar() {
       >
         {isHelpCenter && <span className="active-indicator"></span>}
         <HelpCircle size={22} />
-      </Link>
-
-      {/* Home Button (Portal home) */}
-      <Link 
-        to={mainHomePath} 
-        className="sidebar-btn"
-        title="Home"
-      >
-        <Home size={22} />
       </Link>
 
       {/* Pulse/Statistics (System Status) */}
@@ -61,14 +61,6 @@ export default function Sidebar() {
 
       {/* Spacer */}
       <div className="sidebar-spacer"></div>
-
-      {/* Settings bottom button */}
-      <button 
-        className="sidebar-btn"
-        title="Settings"
-      >
-        <Settings size={22} />
-      </button>
     </aside>
   );
 }
