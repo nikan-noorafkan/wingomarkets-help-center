@@ -282,10 +282,17 @@ export default function CategoryDetail() {
             <MessageSquare size={17} />
             {t('contact_support_btn')}
           </a>
-          <a href="#status" className="status-btn">
-            <span className="pulse-indicator"></span>
-            {t('system_status')}
-          </a>
+          {language === 'fa' ? (
+            <a href="#ai-assistant" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-support-widget')); }} className="status-btn">
+              <span className="pulse-indicator"></span>
+              دستیار هوشمند
+            </a>
+          ) : (
+            <Link to={localizePath('/help-center/status')} className="status-btn">
+              <span className="pulse-indicator"></span>
+              {t('system_status')}
+            </Link>
+          )}
         </div>
       </section>
     </div>
