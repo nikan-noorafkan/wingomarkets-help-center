@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Send, X, MessageCircle, ArrowLeft, MoreHorizontal, Smile, AlertCircle, HelpCircle, Bot } from 'lucide-react';
+import { Send, X, MessageCircle, ArrowLeft, MoreHorizontal, AlertCircle, HelpCircle, Bot } from 'lucide-react';
 
 const LOCALIZATIONS = {
   en: {
@@ -796,8 +796,6 @@ export default function SupportWidget() {
                 gap: '10px'
               }}
             >
-              <Smile size={18} style={{ color: '#888', cursor: 'pointer' }} />
-
               <input
                 type="text"
                 value={message}
