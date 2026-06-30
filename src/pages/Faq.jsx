@@ -252,7 +252,7 @@ export default function Faq() {
           <p>{t('support_subtext')}</p>
         </div>
         <div className="action-buttons">
-          <a href="#ticket" className="contact-btn">
+          <a href="https://wingomarkets.com/contact-us/" target="_blank" rel="noopener noreferrer" className="contact-btn">
             <MessageSquare size={17} />
             {t('contact_support_btn')}
           </a>
